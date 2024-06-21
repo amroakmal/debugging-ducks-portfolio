@@ -3,6 +3,8 @@ from flask import Flask, render_template, request
 from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader
 from app.utils import User
+from app.map import MAP_HTML
+
 
 load_dotenv()
 app = Flask(__name__)
@@ -24,6 +26,7 @@ def index():
                            work_experience=user.work_experience,
                            hobbies=user.hobbies,
                            title="MLH Fellow",
+                           MAP_HTML=MAP_HTML,
                            url=os.getenv("URL"))
 
 @app.route('/projects')
@@ -34,7 +37,7 @@ def projects():
 @app.route('/work_experience')
 def work_experience():
     return render_template('work_exp.html',
-                           work_experience=user.work_experience,)
+                           work_experience=user.work_experience)
 
 @app.route('/hobbies', endpoint='hobbies')
 def hobbies():
