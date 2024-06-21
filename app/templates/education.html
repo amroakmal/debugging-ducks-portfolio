@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -37,14 +34,14 @@
         <div id="profile-picture" class="profile-picture">
             <img src="./static/img/logo.jpg">
         </div>
-        <h1>{{ title }}</h1>
     </div>
-    
+
+
     <div class="profile">
-        <h1>Hobbies</h1>
+        <h1>Education</h1>
         <div>
             <ul style="color:black" id="hobbies">
-                {% for item in hobbies %}
+                {% for item in education %}
                 <li>
                     <p>{{ item }}</p>
                 </li>
@@ -53,7 +50,5 @@
         </div>
     </div>
 </body>
-
-</html>
 
 </html>
