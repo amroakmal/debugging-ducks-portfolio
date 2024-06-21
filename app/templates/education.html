@@ -34,20 +34,18 @@
         <div id="profile-picture" class="profile-picture">
             <img src="./static/img/image.jpg">
         </div>
+        <h1>{{ title }}</h1>
     </div>
 
-
-    <div class="profile">
-        <h1>Education</h1>
-        <div>
-            <ul style="color:black" id="hobbies">
-                {% for item in education %}
-                <li>
-                    <p>{{ item }}</p>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+    <div>
+        <h2>Education</h2>
+        <ul style="color:black" id="hobbies">
+            {% for item in education %}
+            <li>
+                <p>{{ item }}</p>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 

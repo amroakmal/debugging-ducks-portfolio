@@ -4,7 +4,6 @@ from dataclasses import dataclass
 class Project:
     name: str
     desc: str
-    link: str
 
 class User:
     def __init__(self) -> None:  
@@ -15,4 +14,8 @@ class User:
         ]
         self.work_experience = ["SWE @ Incorta     2021-2024", "SWE Intern @ M3ntorship      01/2021-04/2021"]
         self.education = ["M.Sc. @ TTU     2024-2026", "B.Sc. @ Alexandria University    2026-2021"] 
-        self.projects: Project = [Project(name='Foo', desc='Foo Desc', link='https://github.com/')]
+        self.projects: Project = [
+            Project(name='Simple shell', desc='A simple shell that simulates Linux shell using fork and execvp.'),
+            Project(name='Block-Chain', desc='Simulation for Block-Chain system and handling invalid transactions.'),
+            ]
+            

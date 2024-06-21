@@ -43,8 +43,7 @@
             {% for item in projects %}
             <li>
                 <p>{{ item.name }}</p>
-                <p>{{ item.desc }}</p>
-                <a href="{{ item.link }}">{{ item.name }}</a>
+                <p>Description: {{ item.desc }}</p>
             </li>
             {% endfor %}
         </ul>

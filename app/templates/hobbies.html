@@ -22,6 +22,8 @@
     <title>{{ title }}</title>
 </head>
 
+
+
 <body>
     <header class="nav-bar">
         <div class="nav-content">
@@ -40,20 +42,18 @@
         <h1>{{ title }}</h1>
     </div>
 
-    <div class="profile">
-        <h1>Hobbies</h1>
-        <div>
-            <ul style="color:black" id="hobbies">
-                {% for item in hobbies %}
-                <li>
-                    <p>{{ item.name }}</p>
-                    <div>
-                        <img src="./static/img/{{item.img_code}}.jpg" width="50%" />
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+    <div>
+        <h2>Hobbies</h2>
+        <ul style="color:black" id="hobbies">
+            {% for item in hobbies %}
+            <li>
+                <p>{{ item.name }}</p>
+                <div>
+                    <img src="./static/img/{{item.img_code}}.jpg" width="50%" />
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 
