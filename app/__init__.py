@@ -30,4 +30,6 @@ def work_experience():
 
 @app.route('/hobbies', endpoint='hobbies')
 def hobbies():
-    return render_template('hobbies.html', hobbies=hobbies_arr, url=os.getenv("URL"))
+    return render_template('hobbies.html',
+                           hobbies=user.hobbies,
+                           url=os.getenv("URL"))
