@@ -38,36 +38,17 @@
     </div>
 
     <div>
-        <h2>Hobbies</h2>
+        <h2>Projects</h2>
         <ul style="color:black" id="hobbies">
-            {% for item in hobbies %}
+            {% for item in projects %}
             <li>
-                <p>{{ item }}</p>
+                <p>{{ item.name }}</p>
+                <p>{{ item.desc }}</p>
+                <a href="{{ item.link }}">{{ item.name }}</a>
             </li>
             {% endfor %}
         </ul>
     </div>
 
-    <div>
-        <h2>Work Experience</h2>
-        <ul style="color:black" id="hobbies">
-            {% for item in work_experience %}
-            <li>
-                <p>{{ item }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <div>
-        <h2>Education</h2>
-        <ul style="color:black" id="hobbies">
-            {% for item in education %}
-            <li>
-                <p>{{ item }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
 </body>
 </html>
