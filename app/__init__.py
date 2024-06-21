@@ -9,6 +9,17 @@ app = Flask(__name__)
 
 user = User()
 
+hobbies_arr = ["Football", "Video Games", "Watching Aurora"]
+work_experience = ["SWE @ Incorta     2021-2024", "SWE Intern @ M3ntorship      01/2021-04/2021"]
+education = ["M.Sc. @ TTU     2024-2026", "B.Sc. @ Alexandria University    2026-2021"]
+URL = "http://127.0.0.1:5000"
+pages = [
+    {"name": "Education", "href": URL + "/" + "education"},
+    {"name": "Work Experience", "href": URL + "/" + "work"},
+    {"name": "About Me", "href": URL + "/" + "about_me"},
+    {"name": "Hobbies", "href": URL + "/" + "hobbies"},
+    ]
+    
 @app.route('/', endpoint='index')
 def index():
     return render_template('index.html',
