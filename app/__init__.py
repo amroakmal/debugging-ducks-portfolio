@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader
-from utils import User
+from app.utils import User
 
 load_dotenv()
 app = Flask(__name__)
