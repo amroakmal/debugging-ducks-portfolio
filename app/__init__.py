@@ -6,9 +6,10 @@ from utils import User
 
 load_dotenv()
 app = Flask(__name__)
+
 user = User()
 
-@app.route('/')
+@app.route('/', endpoint='index')
 def index():
     return render_template('index.html',
                            education=user.education,
@@ -25,4 +26,8 @@ def projects():
 @app.route('/work_experience')
 def work_experience():
     return render_template('work_exp.html',
-                           work_experience=user.work_experience)
+                           work_experience=user.work_experience,)
+
+@app.route('/hobbies', endpoint='hobbies')
+def hobbies():
+    return render_template('hobbies.html', hobbies=hobbies_arr, url=os.getenv("URL"))
