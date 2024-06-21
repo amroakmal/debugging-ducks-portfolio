@@ -11,10 +11,10 @@ user = User()
 
 URL = "http://127.0.0.1:5000"
 PAGES = [
-    {"name": "Education", "href": URL + "/" + "education"},
-    {"name": "Work Experience", "href": URL + "/" + "work"},
-    {"name": "About Me", "href": URL + "/" + "about_me"},
-    {"name": "Hobbies", "href": URL + "/" + "hobbies"},
+    {"name": "Education", "href": f"{URL}/education"},
+    {"name": "Work Experience", "href": f"{URL}/work"},
+    {"name": "About Me", "href": f"{URL}/about_me"},
+    {"name": "Hobbies", "href": f"{URL}/hobbies"},
     ]
     
 @app.route('/', endpoint='index')
