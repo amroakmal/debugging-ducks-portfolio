@@ -1,14 +1,70 @@
-import os
-from flask import Flask, render_template, request
+import os, re
+from flask import Flask, make_response, jsonify, render_template, request
 from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader
 from app.utils import User
 from app.map import MAP_HTML
+from peewee import *
+import datetime
+from playhouse.shortcuts import model_to_dict
 
 
 load_dotenv()
 app = Flask(__name__)
 
+if os.getenv("TESTING")=="true":
+    mydb=SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
+else:   
+    mydb = MySQLDatabase(
+        os.getenv("MYSQL_DATABASE"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        host=os.getenv("MYSQL_HOST"),
+        port=3306
+    )
+
+print(mydb)
+
+class TimelinePost(Model):
+    name=CharField()
+    email=CharField()
+    content=CharField()
+    created_at=DateTimeField(default=datetime.datetime.now)
+
+    class Meta:
+        database=mydb
+
+mydb.connect()
+mydb.create_tables([TimelinePost])
+
+
+
+@app.route('/api/timeline_post', methods=['POST'])
+def post_time_line_post():
+    data = request.form
+    name, email, content = data.get('name'), data.get('email'), data.get('content')
+
+    if not name:
+        return make_response(jsonify({'error': 'Invalid name'}), 400)
+    if not email or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        return make_response(jsonify({'error': 'Invalid email'}), 400)
+    if not content:
+        return make_response(jsonify({'error': 'Invalid content'}), 400)
+    
+
+    timeline_post=TimelinePost.create(name=name, email=email, content=content)
+
+    return model_to_dict(timeline_post)
+
+@app.route('/api/timeline_post', methods=['GET'])
+def get_time_line_post():
+    return {
+        'timeline_posts': [
+            model_to_dict(p)
+            for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
+        ]
+    }
+    
 user = User()
 
 URL = "http://127.0.0.1:5000"
@@ -51,3 +107,7 @@ def hobbies():
     return render_template('hobbies.html',
                            hobbies=user.hobbies,
                            url=os.getenv("URL"))
+
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html', title="Timeline")
